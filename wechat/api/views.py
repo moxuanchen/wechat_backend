@@ -4,6 +4,7 @@ import hashlib
 from flask import request
 from flask import Blueprint
 from flask import current_app
+from wechat import WeChatHelper
 
 
 api = Blueprint("api", __name__)
@@ -27,8 +28,15 @@ def check_wechat_request():
     return "INVALID REQUEST"
 
 
-@api.route("/", methods=['GET', 'POST'])
+@api.route("/", methods=['GET'])
+def index():
+    return "Wechat backend."
+
+
+@api.route("/callback", methods=['GET', 'POST'])
 def wechat_callback():
     if request.method == 'GET':
         return check_wechat_request()
+
+    WeChatHelper().get_access_token()
     return "Hello, world."
