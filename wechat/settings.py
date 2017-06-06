@@ -12,6 +12,14 @@ class Config(object):
 
 class DevConfig(Config):
     DEBUG = True
+    ###########################################
+    #
+    #  公众平台测试号
+    #
+    ###########################################
+    WECHAT_TOKEN = "wx123cainiao456yefengkuang"
+    APPID = "wx79991d71297dbffa"
+    APPSECRET = "c51d7a30ddb4da4f50862d0a078343dc"
 
 
 class ProdConfig(Config):
