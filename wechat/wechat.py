@@ -81,21 +81,22 @@ class WeChatHelper(WeChatBase):
     def receive_and_response(self, request):
         print request.data
         xmldata = ET.fromstring(request.data)
-        msg_type = xmldata.find("MsgType")
-        print msg_type, msg_type.text
-        if msg_type and msg_type.text == "text":
-            self.receive_text_msg_and_response(xmldata)
-        elif msg_type and msg_type.text == "image":
-            self.receive_image_msg_and_response(xmldata)
-        elif msg_type and msg_type.text == "image":
-            self.receive_voice_msg_and_response(xmldata)
-        elif msg_type and msg_type.text == "image":
-            self.receive_video_msg_and_response(xmldata)
-        elif msg_type and msg_type.text == "image":
-            self.receive_shortvideo_msg_and_response(xmldata)
-        elif msg_type and msg_type.text == "image":
-            self.receive_location_msg_and_response(xmldata)
-        elif msg_type and msg_type.text == "image":
-            self.receive_link_msg_and_response(xmldata)
+        msg_type_obj = xmldata.find("MsgType")
+        msg_type = msg_type_obj.text if msg_type_obj is not None else ""
+
+        if msg_type == "text":
+            return self.receive_text_msg_and_response(xmldata)
+        elif msg_type == "image":
+            return self.receive_image_msg_and_response(xmldata)
+        elif msg_type == "voice":
+            return self.receive_voice_msg_and_response(xmldata)
+        elif msg_type == "video":
+            return self.receive_video_msg_and_response(xmldata)
+        elif msg_type == "shortvideo":
+            return self.receive_shortvideo_msg_and_response(xmldata)
+        elif msg_type == "location":
+            return self.receive_location_msg_and_response(xmldata)
+        elif msg_type == "link":
+            return self.receive_link_msg_and_response(xmldata)
         else:
-            print "Unknown msg type..."
+            raise WeChatException("Unknow MsgType: %s" % msg_type)
