@@ -38,5 +38,4 @@ def wechat_callback():
     if request.method == 'GET':
         return check_wechat_request()
 
-    WeChatHelper().get_access_token()
-    return "Hello, world."
+    return WeChatHelper().receive_and_response(request)
