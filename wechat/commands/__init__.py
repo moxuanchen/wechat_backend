@@ -11,7 +11,7 @@ class CreateWeChatMenu(Command):
     """Create wechat menu"""
 
     menu_file = "../wechat_menu.json"
-    create_menu_url_base = " https://api.weixin.qq.com/cgi-bin/menu/create?access_token={0}"
+    create_menu_url_base = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token={0}"
 
     def run(self):
         print "Create wechat menu..."
