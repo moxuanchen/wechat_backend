@@ -5,9 +5,10 @@ from flask import request
 from flask import Blueprint
 from flask import current_app
 from wechat import WeChatHelper
+from flask import render_template
 
 
-api = Blueprint("api", __name__)
+api = Blueprint("api", __name__, template_folder="templates", static_folder="static")
 
 
 def check_wechat_request():
@@ -39,3 +40,10 @@ def wechat_callback():
         return check_wechat_request()
 
     return WeChatHelper().receive_and_response(request)
+
+
+@api.route("/enrol", methods=['GET', "POST"])
+def user_enrol():
+    if request.method == 'POST':
+        pass
+    return render_template("enrol.html")
