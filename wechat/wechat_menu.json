@@ -1,0 +1,13 @@
+
+{
+    "button":[
+    {
+        "name":"我要打球",
+        "sub_button":[
+        {    
+            "type":"view",
+            "name":"我要报名",
+            "url":"http://www.soso.com/"
+        }]
+    }]
+}
